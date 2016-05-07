@@ -1,5 +1,5 @@
-var path = require('path');
-var webpack = require('webpack');
+var path = require('path')
+var webpack = require('webpack')
 
 module.exports = {
   entry: ['./docs/index.js'],
@@ -12,11 +12,16 @@ module.exports = {
     loaders: [
       {
         test: /\.js$/,
-        exclude: /node_modules/,
+        include: /react-context/,
         loaders: ['babel-loader'],
+      },
+      {
+        test: /\.js$/,
+        exclude: [/node_modules/, /modules/],
+        loaders: ['babel-loader', 'react-map-styles'],
       }, {
         test: /\.jsx$/,
-        exclude: /node_modules/,
+        exclude: [/node_modules/, /modules/],
         loaders: ['jsx-loader', 'babel-loader', 'react-map-styles'],
       }, {
         test: /\.css$/,
@@ -29,7 +34,7 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'react-color': path.resolve(__dirname, './lib/index.js'),
+      'react-color': path.resolve(__dirname, './src/index.js'),
       'react': path.resolve(__dirname, './node_modules/react'),
       'remarkable': path.resolve(__dirname, './modules/remarkable'),
       'highlight.js': path.resolve(__dirname, './modules/highlight.js'),
@@ -39,8 +44,8 @@ module.exports = {
     fallback: [path.resolve(__dirname, './modules')],
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin({quiet: true}),
+    new webpack.HotModuleReplacementPlugin({ quiet: true }),
     new webpack.NoErrorsPlugin(),
   ],
   quiet: true,
-};
+}
