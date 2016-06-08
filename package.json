@@ -18,7 +18,9 @@
     "clean": "rm -rf lib && mkdir lib",
     "lib": "npm run clean && cp -a src/. lib && node map-styles && ./node_modules/.bin/babel lib -d lib",
     "docs": "node docs-server",
-    "docs-dist": "node docs-dist"
+    "docs-dist": "node docs-dist",
+    "storybook": "npm run lib && start-storybook -p 9001",
+    "build-storybook": "npm run lib && build-storybook"
   },
   "homepage": "http://casesandberg.github.io/react-color/",
   "keywords": [
@@ -49,6 +51,7 @@
     "react-dom": "^0.14.0 || ^15.0.0"
   },
   "devDependencies": {
+    "@kadira/storybook": "^1.28.1",
     "babel-cli": "^6.8.0",
     "babel-core": "^6.4.0",
     "babel-loader": "^6.2.1",
